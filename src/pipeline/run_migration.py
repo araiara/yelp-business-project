@@ -2,7 +2,7 @@ import os
 from src.utils.db import *
 
 def create_schema(connection):
-    create_schema_names = ['temp', 'raw']
+    create_schema_names = ['temp', 'raw', 'std']
     # schema_dir_file = os.listdir('../../schema')
 
     check_schema_query = '''
@@ -19,7 +19,7 @@ def create_schema(connection):
                 create_query = 'CREATE SCHEMA IF NOT EXISTS {};'.format(schema_name)                
                 cursor = execute_query(connection, create_query) 
     except Exception as e:
-        print("An error occurred: {}".format(e))  
+        print("An error occurred: {}".format(e)) 
 
 def create_temp_table(connection):
     create_temp_table_names = ['business_temp', 'user_temp', 'review_temp', 'checkin_temp', 'tip_temp']
@@ -70,12 +70,37 @@ def create_raw_table(connection):
 
     except Exception as e:
         print("An error occurred: {}".format(e))
+
+def create_std_table(connection):
+    check_table_query = '''
+        SELECT table_name
+        FROM information_schema.tables
+        WHERE table_schema='std'
+          AND table_type='BASE TABLE';
+    '''  
+
+    try: 
+        cursor = execute_query(connection, check_table_query)
+        exist_table_list = cursor.fetchall()
+        std_dir_path = '../../migration/standard/'
+        std_dir_file = os.listdir(std_dir_path)
+
+        for file_name in sorted(std_dir_file):
+            if (file_name.replace('create_table_', '').replace('.sql', ''),) not in exist_table_list:
+                with open(std_dir_path+file_name) as create_file:
+                    create_query = "".join(create_file.readlines())
+                    cursor = execute_query(connection, create_query)
+                    print("Successfully created {} table.".format(file_name.replace('create_table_', '').replace('.sql', '')))
+
+    except Exception as e:
+        print("An error occurred: {}".format(e))
  
 def main():
     connection = create_db_connection('yelp_business_db')
     create_schema(connection)
     create_temp_table(connection)
     create_raw_table(connection)
+    create_std_table(connection)
 
     connection.close()
 

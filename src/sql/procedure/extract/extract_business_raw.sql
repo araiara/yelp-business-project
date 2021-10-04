@@ -13,7 +13,7 @@ BEGIN
 
   -- insert into raw table --
   INSERT INTO raw.business_raw
-  SELECT 
+  SELECT   
   BTRIM(CAST(business_temp_detail -> 'business_id' AS TEXT), '"'),
   BTRIM(CAST(business_temp_detail -> 'name' AS TEXT), '"'),
   BTRIM(CAST(business_temp_detail -> 'address' AS TEXT), '"'),
