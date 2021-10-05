@@ -14,20 +14,20 @@ BEGIN
   -- insert into raw table --
   INSERT INTO raw.business_raw
   SELECT   
-  BTRIM(CAST(business_temp_detail -> 'business_id' AS TEXT), '"'),
-  BTRIM(CAST(business_temp_detail -> 'name' AS TEXT), '"'),
-  BTRIM(CAST(business_temp_detail -> 'address' AS TEXT), '"'),
-  BTRIM(CAST(business_temp_detail -> 'city' AS TEXT), '"'),
-  BTRIM(CAST(business_temp_detail -> 'state' AS TEXT), '"'),
-  BTRIM(CAST(business_temp_detail -> 'postal_code' AS TEXT), '"'),
-  business_temp_detail -> 'latitude',
-  business_temp_detail -> 'longitude',
-  business_temp_detail -> 'stars',
-  business_temp_detail -> 'review_count',
-  business_temp_detail -> 'is_open',
-  business_temp_detail -> 'attributes',
-  BTRIM(CAST(business_temp_detail -> 'categories' AS TEXT), '"'),
-  business_temp_detail -> 'hours'
+  business_temp_detail ->> 'business_id',
+  business_temp_detail ->> 'name',
+  business_temp_detail ->> 'address',
+  business_temp_detail ->> 'city',
+  business_temp_detail ->> 'state',
+  business_temp_detail ->> 'postal_code',
+  business_temp_detail ->> 'latitude',
+  business_temp_detail ->> 'longitude',
+  business_temp_detail ->> 'stars',
+  business_temp_detail ->> 'review_count',
+  business_temp_detail ->> 'is_open',
+  business_temp_detail ->> 'attributes',
+  business_temp_detail ->> 'categories',
+  business_temp_detail ->> 'hours'
   FROM temp.business_temp;
   
 END;$$;

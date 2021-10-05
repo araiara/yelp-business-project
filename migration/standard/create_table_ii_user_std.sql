@@ -8,5 +8,6 @@ CREATE TABLE IF NOT EXISTS std.user_std (
   funny INT NOT NULL, 
   cool INT NOT NULL, 
   fans INT NOT NULL, 
-  elite TEXT NOT NULL
+  elite TEXT NOT NULL,
+  average_stars FLOAT NOT NULL
 );

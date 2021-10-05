@@ -14,11 +14,11 @@ BEGIN
   -- insert into raw table --
   INSERT INTO raw.tip_raw
   SELECT 
-  BTRIM(CAST(tip_temp_detail -> 'user_id' AS TEXT), '"'),
-  BTRIM(CAST(tip_temp_detail -> 'business_id' AS TEXT), '"'),
-  BTRIM(CAST(tip_temp_detail -> 'text' AS TEXT), '"'),
-  BTRIM(CAST(tip_temp_detail -> 'date' AS TEXT), '"'),
-  tip_temp_detail -> 'compliment_count'
+  tip_temp_detail ->> 'user_id',
+  tip_temp_detail ->> 'business_id',
+  tip_temp_detail ->> 'text',
+  tip_temp_detail ->> 'date',
+  tip_temp_detail ->> 'compliment_count'
   FROM temp.tip_temp;
   
 END;$$;

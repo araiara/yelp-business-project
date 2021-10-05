@@ -14,9 +14,8 @@ BEGIN
   -- insert into raw table --
   INSERT INTO raw.checkin_raw
   SELECT 
-  BTRIM(CAST(checkin_temp_detail -> 'business_id' AS TEXT), '"'),
-  BTRIM(CAST(checkin_temp_detail -> 'date' AS TEXT), '"')
-
+  checkin_temp_detail ->> 'business_id',
+  checkin_temp_detail ->> 'date'
   FROM temp.checkin_temp;
   
 END;$$;

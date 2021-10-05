@@ -17,7 +17,8 @@ BEGIN
   CAST (funny AS INT),
   CAST (cool AS INT),
   CAST (fans AS INT),
-  elite
+  elite,
+  CAST(average_stars AS FLOAT)
   FROM raw.user_raw;
   
 END;$$;

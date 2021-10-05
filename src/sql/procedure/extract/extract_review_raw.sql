@@ -14,16 +14,15 @@ BEGIN
   -- insert into raw table --
   INSERT INTO raw.review_raw
   SELECT 
-  BTRIM(CAST(review_temp_detail -> 'review_id' AS TEXT), '"'),
-  BTRIM(CAST(review_temp_detail -> 'user_id' AS TEXT), '"'),
-  BTRIM(CAST(review_temp_detail -> 'business_id' AS TEXT), '"'),
-  review_temp_detail -> 'stars',
-  BTRIM(CAST(review_temp_detail -> 'date' AS TEXT), '"'),
-  BTRIM(CAST(review_temp_detail -> 'text' AS TEXT), '"'),
-  review_temp_detail -> 'useful',
-  review_temp_detail -> 'funny',
-  review_temp_detail -> 'cool'
-
+  review_temp_detail ->> 'review_id',
+  review_temp_detail ->> 'user_id',
+  review_temp_detail ->> 'business_id',
+  review_temp_detail ->> 'stars',
+  review_temp_detail ->> 'date',
+  review_temp_detail ->> 'text',
+  review_temp_detail ->> 'useful',
+  review_temp_detail ->> 'funny',
+  review_temp_detail ->> 'cool'
   FROM temp.review_temp;
   
 END;$$;

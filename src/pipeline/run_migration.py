@@ -86,7 +86,7 @@ def create_std_table(connection):
         std_dir_file = os.listdir(std_dir_path)
 
         for file_name in sorted(std_dir_file):
-            if (file_name.replace('create_table_', '').replace('.sql', ''),) not in exist_table_list:
+            if ('_'.join(file_name.split('_')[3:]).replace('.sql', ''), ) not in exist_table_list:                
                 with open(std_dir_path+file_name) as create_file:
                     create_query = "".join(create_file.readlines())
                     cursor = execute_query(connection, create_query)

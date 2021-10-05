@@ -31,7 +31,7 @@ def transform_std(connection):
         table_names = []
 
         for file_name in transform_procedure_dir_files:
-            if file_name in ['transform_business_std.sql']: #, 'transform_user_std.sql', 'transform_review_std.sql', 'transform_checkin_std.sql', 'transform_tip_std.sql']:
+            if file_name in ['transform_business_std.sql', 'transform_user_std.sql', 'transform_review_std.sql', 'transform_checkin_std.sql', 'transform_tip_std.sql']:
                 continue
             table_name = file_name.replace('transform_', '').replace('.sql', '')
             table_names.append(table_name)

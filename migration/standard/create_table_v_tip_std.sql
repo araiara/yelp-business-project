@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS std.tip_std (
-  user_id VARCHAR(22) PRIMARY KEY, 
+  tip_id SERIAL PRIMARY KEY,
+  user_id VARCHAR(22) NOT NULL, 
   business_id VARCHAR(22) NOT NULL, 
   text TEXT NOT NULL, 
   date DATE NOT NULL, 
