@@ -25,9 +25,9 @@ BEGIN
   business_temp_detail ->> 'stars',
   business_temp_detail ->> 'review_count',
   business_temp_detail ->> 'is_open',
-  business_temp_detail ->> 'attributes',
+  business_temp_detail -> 'attributes',
   business_temp_detail ->> 'categories',
-  business_temp_detail ->> 'hours'
+  business_temp_detail -> 'hours'
   FROM temp.business_temp;
   
 END;$$;

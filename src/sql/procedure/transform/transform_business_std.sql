@@ -19,7 +19,7 @@ BEGIN
   CAST (stars AS FLOAT),
   CAST (review_count AS INT),
   CAST (is_open AS INT),
-  categories,
+  string_to_array(categories, ','),
   CAST(SPLIT_PART(hours ->> 'Monday', '-', 1) AS TIME),
   CAST(SPLIT_PART(hours ->> 'Monday', '-', 2) AS TIME),
   CAST(SPLIT_PART(hours ->> 'Tuesday', '-', 1) AS TIME),

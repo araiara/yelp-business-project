@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS std.business_std (
   stars FLOAT NOT NULL, 
   review_count INT NOT NULL, 
   is_open INT NOT NULL,  
-  categories TEXT NOT NULL,
+  categories TEXT[],
   hours_mon_start TIME,
   hours_mon_end TIME,
   hours_tues_start TIME,

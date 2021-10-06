@@ -12,12 +12,20 @@ BEGIN
   name,
   CAST (review_count AS INT),
   CAST (yelping_since AS DATE),
-  friends,
+  string_to_array(friends, ','),
+  CASE 
+    WHEN friends = '' THEN 0
+  ELSE array_length(string_to_array(friends, ','), 1)
+  END,
   CAST (useful AS INT),
   CAST (funny AS INT),
   CAST (cool AS INT),
   CAST (fans AS INT),
-  elite,
+  string_to_array(elite, ','),
+  CASE 
+    WHEN elite = '' THEN 0
+  ELSE array_length(string_to_array(elite, ','), 1)
+  END, 
   CAST(average_stars AS FLOAT)
   FROM raw.user_raw;
   
