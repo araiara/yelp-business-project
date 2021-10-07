@@ -9,10 +9,10 @@ def transform_std(connection):
     type 'object'
     """  
     try:
-        transform_procedure_dir_path = '../sql/procedure/transform/'
+        transform_procedure_dir_path = './sql/procedure/transform/'
         transform_procedure_dir_files = os.listdir(transform_procedure_dir_path)
 
-        with open('../sql/query/retrieve_db_config.sql') as config_file:
+        with open('./sql/query/retrieve_db_config.sql') as config_file:
             config_query = "".join(config_file.readlines())
             cursor = execute_query(connection, config_query)
             config = cursor.fetchone()

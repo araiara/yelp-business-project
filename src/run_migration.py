@@ -1,5 +1,5 @@
 import os
-from src.utils.db import *
+from utils.db import *
 
 def create_schema(connection, create_schema_names):
     """
@@ -42,7 +42,7 @@ def create_db_config(connection):
     try: 
         cursor = execute_query(connection, check_table_query)
         exist_table_list = cursor.fetchall()
-        file_dir_path = '../../migration/system/'
+        file_dir_path = '../migration/system/'
         file_dir_file = os.listdir(file_dir_path)
 
         for file_name in file_dir_file:
@@ -104,7 +104,7 @@ def create_raw_table(connection):
     try: 
         cursor = execute_query(connection, check_table_query)
         exist_table_list = cursor.fetchall()
-        raw_dir_path = '../../migration/raw/'
+        raw_dir_path = '../migration/raw/'
         raw_dir_file = os.listdir(raw_dir_path)
 
         for file_name in raw_dir_file:
@@ -134,7 +134,7 @@ def create_std_table(connection):
     try: 
         cursor = execute_query(connection, check_table_query)
         exist_table_list = cursor.fetchall()
-        std_dir_path = '../../migration/standard/'
+        std_dir_path = '../migration/standard/'
         std_dir_file = os.listdir(std_dir_path)
 
         for file_name in sorted(std_dir_file):
@@ -164,7 +164,7 @@ def create_dim_table(connection):
     try: 
         cursor = execute_query(connection, check_table_query)
         exist_table_list = cursor.fetchall()
-        file_dir_path = '../../migration/dimension/'
+        file_dir_path = '../migration/dimension/'
         file_dir_file = os.listdir(file_dir_path)
 
         for file_name in sorted(file_dir_file):
@@ -194,7 +194,7 @@ def create_fact_table(connection):
     try: 
         cursor = execute_query(connection, check_table_query)
         exist_table_list = cursor.fetchall()
-        file_dir_path = '../../migration/fact/'
+        file_dir_path = '../migration/fact/'
         file_dir_file = os.listdir(file_dir_path)
 
         for file_name in file_dir_file:
@@ -214,15 +214,21 @@ def main():
     """
     create_schema_names = ['temp', 'raw', 'std', 'dwh']
 
-    connection = create_db_connection('yelp_business_db')
-    create_schema(connection, create_schema_names)
-    create_db_config(connection)
-    create_temp_table(connection)
-    create_raw_table(connection)
-    create_std_table(connection)
-    create_dim_table(connection)
-    create_fact_table(connection)
-
-    connection.close()
+    try:
+        connection = create_db_connection('yelp_business_db')
+        create_schema(connection, create_schema_names)
+        create_db_config(connection)
+        create_temp_table(connection)
+        create_raw_table(connection)
+        create_std_table(connection)
+        create_dim_table(connection)
+        create_fact_table(connection)
+    
+    except Exception as e:
+        print("An error occurred: {}".format(e))
+    
+    else:
+        print("Migration completed successfully.")
+        connection.close()
 
 main()
