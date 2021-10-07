@@ -1,6 +1,16 @@
 from src.utils.db import *
 
 def db_config(connection, load_complete_history_flag, load_history_years):
+    """
+    Inserts the config values to the db_config table.
+    params:
+    param 'connection' database connection object
+    type 'object'
+    param 'load_complete_history_flag' flag that denotes load complete history
+    type 'bool'
+    param 'load_history_years' years of history data to insert from current date
+    type 'int'
+    """
     try:
         insert_dir_path = '../sql/procedure/system/'
         insert_file_path = os.listdir(insert_dir_path)[0]
@@ -16,6 +26,10 @@ def db_config(connection, load_complete_history_flag, load_history_years):
         print("Successfully inserted db config values.")
 
 def main():
+    """
+    Main method.
+    Configure the database.
+    """
     load_complete_history_flag = False
     load_history_years = 5
 

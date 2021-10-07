@@ -2,6 +2,12 @@ import os, json
 from src.utils.db import *
 
 def extract_raw_from_temp(connection):
+    """
+    Extract the raw data into raw temp table.
+    params:
+    param 'connection' database connection object
+    type 'object'
+    """
     try:
         extract_procedure_dir_path = '../sql/procedure/extract/'
         extract_procedure_dir_files = os.listdir(extract_procedure_dir_path)
@@ -23,6 +29,16 @@ def extract_raw_from_temp(connection):
         print("Successfully extracted tables.")
 
 def extract_many(connection, insert_path, record_list):
+    """
+    Execute bulk insert into database table.
+    params:
+    param 'connection' database connection object
+    type 'object'
+    param 'insert_path' path of the insert query file
+    type 'string'
+    param 'record_list' records to insert into the table.
+    type 'list'
+    """
     try:
         cursor = connection.cursor()
         with open(insert_path) as insert_file:
@@ -37,6 +53,12 @@ def extract_many(connection, insert_path, record_list):
 
 
 def extract_raw(connection):
+    """
+    Extract the raw data into raw tables.
+    params:
+    param 'connection' database connection object
+    type 'object'
+    """
     try:
         data_dir_path = '../../data/'
         data_dir_name = os.listdir(data_dir_path) # ['business',...]
@@ -45,7 +67,7 @@ def extract_raw(connection):
         extract_dir_files = os.listdir(extract_dir_path) # ['insert_checkin_raw.sql',...]
 
         for dir in data_dir_name:
-            if dir in ['business', 'user', 'review', 'checkin', 'tip']: continue
+            if dir in ['business']: continue
             file_name = os.listdir(data_dir_path+dir)
             insert_file_name = [extract_file_path for extract_file_path in extract_dir_files if ''.join(extract_file_path.split('_')[1]) == dir]
 

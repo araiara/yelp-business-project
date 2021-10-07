@@ -25,7 +25,17 @@ def create_db_connection(database):
     
     return connection
 
-def execute_query(connection, query, value=None):   
+def execute_query(connection, query, value=None):
+    """
+    Execute database query.
+    params:
+    param 'connection' database connection object
+    type 'object'
+    param 'query' query for execution
+    type 'string'
+    param 'value' default None
+    type 'tuple'
+    """   
     try:
         cursor = connection.cursor()
         cursor.execute(query, value)
@@ -34,10 +44,3 @@ def execute_query(connection, query, value=None):
         print("An error occurred: {}".format(e))
     else:
         return cursor
-
-# def truncate_table(connection, table_name):
-#     try:
-#         truncate_query = 'TRUNCATE TABLE {}'.format(table_name)
-#         execute_query(connection, truncate_query)
-#     except Exception as e:
-#         print("An error occurred: {}".format(e)) 
