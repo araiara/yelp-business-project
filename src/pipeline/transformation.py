@@ -18,8 +18,8 @@ def transform_std(connection):
             config = cursor.fetchone()
 
         for file_name in sorted(transform_procedure_dir_files):
-            if file_name in ['transform_i_business_std.sql', 'transform_ii_user_std.sql', 'transform_iii_review_std.sql', 'transform_iv_checkin_std.sql', 'transform_v_tip_std.sql']:
-                continue
+            # if file_name in ['transform_i_business_std.sql', 'transform_ii_user_std.sql', 'transform_iii_review_std.sql', 'transform_iv_checkin_std.sql', 'transform_v_tip_std.sql']:
+            #     continue
             table_name = '_'.join(file_name.split('_')[2:]).replace('.sql', '')            
 
             with open(transform_procedure_dir_path+file_name) as transform_file:

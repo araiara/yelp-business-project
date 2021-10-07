@@ -67,7 +67,7 @@ def extract_raw(connection):
         extract_dir_files = os.listdir(extract_dir_path) # ['insert_checkin_raw.sql',...]
 
         for dir in data_dir_name:
-            if dir in ['business', 'user', 'review', 'checkin', 'tip']: continue
+            if dir in ['business']: continue
             file_name = os.listdir(data_dir_path+dir)
             insert_file_name = [extract_file_path for extract_file_path in extract_dir_files if ''.join(extract_file_path.split('_')[1]) == dir]
 
