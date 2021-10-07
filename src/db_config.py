@@ -1,4 +1,4 @@
-from src.utils.db import *
+from utils.db import *
 
 def db_config(connection, load_complete_history_flag, load_history_years):
     """
@@ -12,7 +12,7 @@ def db_config(connection, load_complete_history_flag, load_history_years):
     type 'int'
     """
     try:
-        insert_dir_path = '../sql/procedure/system/'
+        insert_dir_path = './sql/procedure/system/'
         insert_file_path = os.listdir(insert_dir_path)[0]
         insert_info = (load_complete_history_flag, load_history_years)
 

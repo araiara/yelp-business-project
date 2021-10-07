@@ -9,7 +9,7 @@ def load_into_dwh(connection):
     type 'object'
     """
     try:
-        load_procedure_dir_path = '../sql/procedure/load/'
+        load_procedure_dir_path = './sql/procedure/load/'
         load_procedure_dir_files = os.listdir(load_procedure_dir_path)
 
         for file_name in sorted(load_procedure_dir_files):

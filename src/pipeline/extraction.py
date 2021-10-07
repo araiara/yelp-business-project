@@ -9,12 +9,11 @@ def extract_raw_from_temp(connection):
     type 'object'
     """
     try:
-        extract_procedure_dir_path = '../sql/procedure/extract/'
+        extract_procedure_dir_path = './sql/procedure/extract/'
         extract_procedure_dir_files = os.listdir(extract_procedure_dir_path)
 
         for file_name in extract_procedure_dir_files:
-            if file_name in ['extract_business_raw.sql']:
-                continue
+            # if file_name in ['extract_business_raw.sql']: continue
             table_name = file_name.replace('extract_', '').replace('.sql', '')
 
             with open(extract_procedure_dir_path+file_name) as extract_file:
@@ -60,14 +59,14 @@ def extract_raw(connection):
     type 'object'
     """
     try:
-        data_dir_path = '../../data/'
+        data_dir_path = '../data/'
         data_dir_name = os.listdir(data_dir_path) # ['business',...]
 
-        extract_dir_path = '../sql/insert/raw/'
+        extract_dir_path = './sql/insert/raw/'
         extract_dir_files = os.listdir(extract_dir_path) # ['insert_checkin_raw.sql',...]
 
         for dir in data_dir_name:
-            if dir in ['business']: continue
+            if dir in ['business']: continue # skip the business as we first load business into temp
             file_name = os.listdir(data_dir_path+dir)
             insert_file_name = [extract_file_path for extract_file_path in extract_dir_files if ''.join(extract_file_path.split('_')[1]) == dir]
 

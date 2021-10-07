@@ -1,7 +1,7 @@
 from src.utils.db import *
-from extraction import extract_raw_from_temp, extract_raw
-from transformation import transform_std
-from load import load_into_dwh
+from pipeline.extraction import extract_raw_from_temp, extract_raw
+from pipeline.transformation import transform_std
+from pipeline.load import load_into_dwh
 
 def main():
     """
